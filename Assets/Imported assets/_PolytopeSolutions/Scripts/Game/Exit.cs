@@ -14,7 +14,7 @@ namespace PolytopeSolutions.Game {
 			}
 		}
 
-        private void OnExit(){
+        public void OnExit(){
 			#if !UNITY_EDITOR
 			Application.Quit();
 			#else
