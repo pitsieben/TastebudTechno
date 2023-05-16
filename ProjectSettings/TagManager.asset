@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Glass1
+  - Glass2
+  - Glass3
+  - Animation1
   layers:
   - Default
   - TransparentFX
