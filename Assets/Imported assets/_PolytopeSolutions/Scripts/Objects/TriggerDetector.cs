@@ -15,6 +15,7 @@ namespace PolytopeSolutions.Pbjects {
         [SerializeField] private UnityEvent onValidCollisionEnter;
         [SerializeField] private UnityEvent onValidCollisionStay;
         [SerializeField] private UnityEvent onValidCollisionExit;
+        private bool secondAnimationTriggered = false;
 
         private void Start() {
             for (int i = 0; i < this.tagsToDetect.Count; i++) {
@@ -36,8 +37,11 @@ namespace PolytopeSolutions.Pbjects {
                 #if DEBUG
                 Debug.Log("Trigger detector ["+gameObject.name+"]: Object stayed with valid tag: " + other.tag);
                 #endif
-                if (this.onValidCollisionStay != null) 
+                float angle = Mathf.Abs(Vector3.Angle(Vector3.up, other.gameObject.transform.up));
+                if (this.onValidCollisionStay != null && angle > 30 && !secondAnimationTriggered) { 
                     this.onValidCollisionStay.Invoke();
+                    secondAnimationTriggered = true;
+                }
             }
         }
         private void OnTriggerExit(Collider other)  {
